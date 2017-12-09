@@ -24,5 +24,5 @@ server.use('/api', notesRouter(PORT));
 // start server
 
 server.listen(PORT, () => {
-    console.log('Listening on port 8000 ...');
+    console.log(`Listening on port ${PORT} ...`);
 });

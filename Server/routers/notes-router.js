@@ -11,9 +11,8 @@ const noteManager = new NoteManager();
 
 // build router
 
-const notesRouter = (port) => {
+const notesRouter = () => {
     const router = express.Router();
-    const host = `http://localhost:${port}/api`;
 
     router
         .delete('/notes/:id', (request, response) => {
