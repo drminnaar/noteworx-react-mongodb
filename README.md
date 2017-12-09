@@ -14,6 +14,20 @@ A basic note application that uses a [ReactJS] frontend to capture and manage no
 
 ![noteworx-react-mongodb](https://user-images.githubusercontent.com/33935506/33653545-0f6d5828-da76-11e7-8a3c-a72bc732ad4f.PNG)
 
+## Screenshots
+
+![noteworx-react-mongodb-1](https://user-images.githubusercontent.com/33935506/33796539-bed2352e-dcfe-11e7-8392-d1b621af3258.PNG)
+
+![noteworx-react-mongodb-2](https://user-images.githubusercontent.com/33935506/33796540-bf33cd7a-dcfe-11e7-9074-38e9e9be28ed.PNG)
+
+![noteworx-react-mongodb-3](https://user-images.githubusercontent.com/33935506/33796541-bf65a804-dcfe-11e7-86cb-62948ac5c890.PNG)
+
+![noteworx-react-mongodb-4](https://user-images.githubusercontent.com/33935506/33796542-bf9bbcfa-dcfe-11e7-8be5-bb23f3521edb.PNG)
+
+![noteworx-react-mongodb-5](https://user-images.githubusercontent.com/33935506/33796543-bfcff36c-dcfe-11e7-94b4-9e3ebcfe49ad.PNG)
+
+![noteworx-react-mongodb-6](https://user-images.githubusercontent.com/33935506/33796544-c0036a3a-dcfe-11e7-9775-f9dadfb2b9d1.PNG)
+
 ---
 
 ## Developed With
@@ -36,7 +50,7 @@ A basic note application that uses a [ReactJS] frontend to capture and manage no
 
 * [noteworx-cli-mongodb]
 
-  A basic note application that uses a CLI (Command Line Interface) frontend to capture and manage notes, and mongodb to store notes 
+  A basic note application that uses a CLI (Command Line Interface) frontend to capture and manage notes, and mongodb to store notes
 
 * [noteworx-cli-mongoose]
 
