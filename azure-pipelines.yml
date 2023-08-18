@@ -1,0 +1,128 @@
+# Node.js with Vue
+# Build a Node.js project that uses Vue.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+1. Frontend (React):
+Create a new React project using Create React App or any other method. Then, replace the content of the App.js file with the following code:
+
+javascript
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [notes, setNotes] = useState([]);
+    const [newNote, setNewNote] = useState('');
+
+      useEffect(() => {
+          fetch('/api/notes')
+                .then(response => response.json())
+                      .then(data => setNotes(data))
+                            .catch(error => console.log(error));
+                              }, []);
+
+                                const handleAddNote = () => {
+                                    if (newNote !== '') {
+                                          fetch('/api/notes', {
+                                                  method: 'POST',
+                                                          headers: { 'Content-Type': 'application/json' },
+                                                                  body: JSON.stringify({ content: newNote })
+                                                                        })
+                                                                                .then(response => response.json())
+                                                                                        .then(data => {
+                                                                                                  setNotes([...notes, data]);
+                                                                                                            setNewNote('');
+                                                                                                                    })
+                                                                                                                            .catch(error => console.log(error));
+                                                                                                                                }
+                                                                                                                                  };
+
+                                                                                                                                    return (
+                                                                                                                                        <div>
+                                                                                                                                              <h1>Notes</h1>
+                                                                                                                                                    <ul>
+                                                                                                                                                            {notes.map(note => (
+                                                                                                                                                                      <li key={note._id}>{note.content}</li>
+                                                                                                                                                                              ))}
+                                                                                                                                                                                    </ul>
+                                                                                                                                                                                          <input type="text" value={newNote} onChange={e => setNewNote(e.target.value)} />
+                                                                                                                                                                                                <button onClick={handleAddNote}>Add Note</button>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                      );
+                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                      export default App;
+
+
+                                                                                                                                                                                                      2. Backend (ExpressJS):
+                                                                                                                                                                                                      Create a new folder for your backend code and initialize it with npm init. Install the required dependencies by running npm install express mongoose.
+
+                                                                                                                                                                                                      Create a new file called server.js and add the following code:
+
+                                                                                                                                                                                                      javascript
+                                                                                                                                                                                                      const express = require('express');
+                                                                                                                                                                                                      const mongoose = require('mongoose');
+
+                                                                                                                                                                                                      const app = express();
+                                                                                                                                                                                                      const PORT = 5000;
+
+                                                                                                                                                                                                      app.use(express.json());
+
+                                                                                                                                                                                                      // Connect to MongoDB
+                                                                                                                                                                                                      mongoose.connect('mongodb://localhost/notes', { useNewUrlParser: true, useUnifiedTopology: true })
+                                                                                                                                                                                                        .then(() => console.log('Connected to MongoDB'))
+                                                                                                                                                                                                          .catch(error => console.log(error));
+
+                                                                                                                                                                                                          // Define note schema and model
+                                                                                                                                                                                                          const noteSchema = new mongoose.Schema({
+                                                                                                                                                                                                            content: String
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            const Note = mongoose.model('Note', noteSchema);
+
+                                                                                                                                                                                                            // API routes
+                                                                                                                                                                                                            app.get('/api/notes', (req, res) => {
+                                                                                                                                                                                                              Note.find()
+                                                                                                                                                                                                                  .then(notes => res.json(notes))
+                                                                                                                                                                                                                      .catch(error => console.log(error));
+                                                                                                                                                                                                                      });
+
+                                                                                                                                                                                                                      app.post('/api/notes', (req, res) => {
+                                                                                                                                                                                                                        const { content } = req.body;
+                                                                                                                                                                                                                          const newNote = new Note({ content });
+
+                                                                                                                                                                                                                            newNote.save()
+                                                                                                                                                                                                                                .then(note => res.json(note))
+                                                                                                                                                                                                                                    .catch(error => console.log(error));
+                                                                                                                                                                                                                                    });
+
+                                                                                                                                                                                                                                    // Start the server
+                                                                                                                                                                                                                                    app.listen(PORT, () => console.log(Server running on port ${PORT}));
+
+
+                                                                                                                                                                                                                                    3. MongoDB:
+                                                                                                                                                                                                                                    Make sure you have MongoDB installed and running on your local machine. Create a new database named "notes" by running the following command in your terminal:
+
+
+                                                                                                                                                                                                                                    mongo
+                                                                                                                                                                                                                                    use notes
+
+
+                                                                                                                                                                                                                                    That's it! You can now start both the frontend and backend servers. In the terminal, navigate to the frontend folder and run npm start to start the React development server. Then, navigate to the backend folder and run node server.js to start the Express server.
+
+                                                                                                                                                                                                                                    Now, you should be able to access the note application in your browser at http://localhost:3000. You can add new notes, and they will be stored in the MongoDB database. Run the code
