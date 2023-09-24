@@ -8,7 +8,7 @@
     "lint": "eslint .; exit 0",
     "lint:fix": "eslint . --fix",
     "serve": "webpack -d && live-server ./Client/public",
-    "serve:dev": "webpack-dev-server --open",
+    "serve:dev": "webpack-dev-server",
     "serve:api": "node ./Server/server.js",
     "test": "echo \"No tests available\" && exit 1"
   },
